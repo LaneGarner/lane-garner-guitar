@@ -10,12 +10,23 @@ const style = {
   paddingBlock: '3rem'
 }
 
-const BandcampGrid: React.FC = (props) => {
-  const {children} = props;
+interface Props {
+  children?: React.ReactNode
+};
+
+const BandcampGrid: React.FC<Props> = (props) => {
 
   return (
-    <div style={style}>
-      {children}  
+    <div style={{
+      display: 'flex',
+      gap: '3rem',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      maxWidth: '90%',
+      margin: 'auto',
+      paddingBlock: '3rem'
+    }}>
+      {props.children}  
     </div>
   )
 }
