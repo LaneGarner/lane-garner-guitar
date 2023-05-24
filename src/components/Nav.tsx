@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import PickFlyout from './PickFlyout';
 
 const Nav = () => {
@@ -7,10 +7,19 @@ const Nav = () => {
 
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
 
-  useEffect(
-    () => (isMenuOpen ? setMenuPosition('0px') : setMenuPosition('-300px')),
-    [isMenuOpen],
-  );
+  useEffect(() => {
+    isMenuOpen ? setMenuPosition('0px') : setMenuPosition('-300px');
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const resetMenu = () => {
+      if (isMenuOpen === true) setMenuOpen(false);
+    };
+    document.addEventListener('scroll', resetMenu);
+    return () => {
+      document.removeEventListener('scroll', resetMenu);
+    };
+  }, []);
 
   return (
     <nav
