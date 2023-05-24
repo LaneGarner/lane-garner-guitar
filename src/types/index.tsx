@@ -1,5 +1,5 @@
 export interface BandcampAlbumInterface {
-  title: string,
-  src: number,
-  href: string
+  title: string;
+  src: number;
+  href: string;
 }
