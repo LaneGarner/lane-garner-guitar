@@ -5,8 +5,8 @@ interface PickFlyoutProps {
 }
 
 const navItems = [
-  { name: 'My music', href: '#my-music' },
-  { name: 'Guitar lessons', href: 'https://garnerguitar.com', newTab: true },
+  { name: 'Music', href: '#my-music' },
+  { name: 'Lessons', href: 'https://garnerguitar.com', newTab: true },
   { name: 'Contact', href: '#' },
 ];
 
