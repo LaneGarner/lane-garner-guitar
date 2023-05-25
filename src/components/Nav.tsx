@@ -50,11 +50,14 @@ const Nav = () => {
         <h1
           style={{
             color: 'white',
-            fontSize: '2rem',
+            fontSize: 'clamp(1rem, 5vw, 2rem)',
             paddingInlineStart: '9.5rem',
           }}>
           Lane Garner <span style={{ paddingInline: '0.25rem' }}>🎸</span>{' '}
-          <span style={{ fontWeight: '600' }}>guitarist</span>{' '}
+          <span
+            style={{ fontWeight: '600', fontSize: 'clamp(1rem, 5vw, 2rem)' }}>
+            guitarist
+          </span>{' '}
         </h1>
         <button
           onClick={toggleMenu}
