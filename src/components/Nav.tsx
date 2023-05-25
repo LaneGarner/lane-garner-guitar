@@ -1,75 +1,83 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import PickFlyout from './PickFlyout';
 
+const MENU_POSITION = '1rem';
+const OFFSCREEN_MENU = '-300px';
+
 const Nav = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [menuPosition, setMenuPosition] = useState('-300px');
+  const [menuPosition, setMenuPosition] = useState(OFFSCREEN_MENU);
 
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
 
   useEffect(() => {
-    isMenuOpen ? setMenuPosition('0px') : setMenuPosition('-300px');
-  }, [isMenuOpen]);
-
-  useEffect(() => {
     const resetMenu = () => {
-      if (isMenuOpen === true) setMenuOpen(false);
+      if (isMenuOpen) toggleMenu();
     };
     document.addEventListener('scroll', resetMenu);
+
     return () => {
       document.removeEventListener('scroll', resetMenu);
     };
   }, []);
 
+  useEffect(() => {
+    isMenuOpen
+      ? setMenuPosition(MENU_POSITION)
+      : setMenuPosition(OFFSCREEN_MENU);
+  }, [isMenuOpen]);
+
   return (
-    <nav
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        position: 'fixed',
-        backgroundColor: '#333',
-        paddingBlock: '1.375rem',
-        paddingInline: '2.375rem',
-        borderRadius: '3rem',
-        width: 'calc(100% - 2rem)',
-        top: '2rem',
-        marginInline: '1rem',
-        opacity: '0.9',
-        backdropFilter: 'blur(5px)',
-      }}>
-      <img
-        src="./lane-garner-guitar.jpeg"
-        style={{ position: 'fixed', width: '8rem', borderRadius: '50%' }}
-      />
-      <h1
+    <nav>
+      <div
         style={{
-          color: 'white',
-          fontSize: '2rem',
-          paddingInlineStart: '9.5rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          position: 'fixed',
+          backgroundColor: '#333',
+          paddingBlock: '1.375rem',
+          paddingInline: '2.375rem',
+          borderRadius: '3rem',
+          width: 'calc(100% - 2rem)',
+          top: '2rem',
+          marginInline: '1rem',
+          opacity: '0.9',
+          backdropFilter: 'blur(5px)',
         }}>
-        Lane Garner <span style={{ paddingInline: '0.25rem' }}>🎸</span>{' '}
-        <span style={{ fontWeight: '600' }}>guitarist</span>{' '}
-      </h1>
-      <button
-        onClick={toggleMenu}
-        style={{
-          backgroundColor: 'inherit',
-          border: 'none',
-          cursor: 'pointer',
-        }}>
-        <svg viewBox="0 0 100 80" width="40" height="40">
-          <rect fill="white" width="100" height="10"></rect>
-          <rect fill="white" y="30" width="100" height="10"></rect>
-          <rect
-            fill="white"
-            y="60"
-            width="100"
-            height="10"
-            // transform={'rotate(45)'}
-          ></rect>
-        </svg>
-      </button>
+        <img
+          src="./lane-garner-guitar.jpeg"
+          style={{ position: 'fixed', width: '8rem', borderRadius: '50%' }}
+        />
+        <h1
+          style={{
+            color: 'white',
+            fontSize: '2rem',
+            paddingInlineStart: '9.5rem',
+          }}>
+          Lane Garner <span style={{ paddingInline: '0.25rem' }}>🎸</span>{' '}
+          <span style={{ fontWeight: '600' }}>guitarist</span>{' '}
+        </h1>
+        <button
+          onClick={toggleMenu}
+          style={{
+            backgroundColor: 'inherit',
+            border: 'none',
+            cursor: 'pointer',
+          }}>
+          <svg viewBox="0 0 100 80" width="40" height="40">
+            <rect fill="white" width="100" height="10"></rect>
+            <rect fill="white" y="30" width="100" height="10"></rect>
+            <rect
+              fill="white"
+              y="60"
+              width="100"
+              height="10"
+              // transform={'rotate(45)'}
+            ></rect>
+          </svg>
+        </button>
+      </div>
       <PickFlyout menuPosition={menuPosition} />
     </nav>
   );

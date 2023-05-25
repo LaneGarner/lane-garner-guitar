@@ -4,6 +4,12 @@ interface PickFlyoutProps {
   menuPosition: string;
 }
 
+const navItems = [
+  { name: 'My music', href: '#my-music' },
+  { name: 'Guitar lessons', href: 'https://garnerguitar.com', newTab: true },
+  { name: 'Contact', href: '#' },
+];
+
 const PickFlyout: React.FC<PickFlyoutProps> = props => {
   const { menuPosition } = props;
 
@@ -11,39 +17,36 @@ const PickFlyout: React.FC<PickFlyoutProps> = props => {
     <ul
       style={{
         backgroundImage: 'url("/pick.svg")',
-        backgroundSize: '250px',
-        width: '250px',
-        height: '297.03px',
+        backgroundSize: '180px',
+        width: '180px',
+        height: '213px',
         listStyle: 'none',
         paddingLeft: 0,
-        padding: '4rem',
-        paddingBottom: '6rem',
+        paddingTop: '1rem',
         transition: 'right 300ms',
         textAlign: 'center',
-        position: 'absolute',
-        top: '7rem',
+        position: 'fixed',
+        top: '9rem',
         right: menuPosition,
         color: '#333',
       }}>
-      <li style={{ paddingBlock: '0.5rem', margin: '0.5rem' }}>
-        <a style={{ color: '#333', textDecoration: 'none' }} href="#my-music">
-          My music
-        </a>
-      </li>
-      <li style={{ paddingBlock: '0.5rem', margin: '0.5rem' }}>
-        <a
-          style={{ color: '#333', textDecoration: 'none' }}
-          href="https://garnerguitar.com"
-          target="_blank"
-          rel="noreferer">
-          Guitar lessons
-        </a>
-      </li>
-      <li style={{ paddingBlock: '0.5rem', margin: '0.5rem' }}>
-        <a style={{ color: '#333', textDecoration: 'none' }} href="#">
-          Contact
-        </a>
-      </li>
+      {navItems.map((item, i) => (
+        <li
+          key={i}
+          style={{
+            paddingBlock: '0.5rem',
+            margin: '0.5rem',
+            fontWeight: 'bold',
+          }}>
+          <a
+            style={{ color: '#333', textDecoration: 'none' }}
+            href={item.href}
+            target={item.newTab ? '_blank' : undefined}
+            rel={item.newTab ? 'noreferer' : undefined}>
+            {item.name}
+          </a>
+        </li>
+      ))}
     </ul>
   );
 };
