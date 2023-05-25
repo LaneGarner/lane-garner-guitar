@@ -1,5 +1,6 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PickFlyout from './PickFlyout';
+import { NavImage } from './NavImage';
 
 const MENU_POSITION = '1rem';
 const OFFSCREEN_MENU = '-300px';
@@ -45,10 +46,7 @@ const Nav = () => {
           opacity: '0.9',
           backdropFilter: 'blur(5px)',
         }}>
-        <img
-          src="./lane-garner-guitar.jpeg"
-          style={{ position: 'fixed', width: '8rem', borderRadius: '50%' }}
-        />
+        <NavImage />
         <h1
           style={{
             color: 'white',

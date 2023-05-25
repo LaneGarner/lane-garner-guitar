@@ -6,12 +6,13 @@ import '@fontsource/mulish/600.css';
 import GuestArtistAlbums from './components/GuestArtistAlbums';
 import MyAlbums from './components/MyAlbums';
 import Nav from './components/Nav';
+import { HeroImage } from './components/HeroImage';
 
 const App = () => {
   return (
     <section>
       <Nav />
-      <img style={{ width: '100vw' }} src="./lane-garner-guitar-pedals.jpeg" />
+      <HeroImage />
       <div
         id="my-music"
         style={{ paddingBlock: '5rem', scrollPaddingTop: '10rem' }}>
